@@ -45,8 +45,8 @@ app.delete('/posts/:id', async (req, res) => {
   const itemId = req.params.id;
   try {
     const record = await Post.findOne({
-       where: { id: itemId }
-     });
+      where: { id: itemId }
+    });
 
     const deletedItem = await Post.destroy({
       where: { id: itemId }
