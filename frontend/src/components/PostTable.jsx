@@ -10,7 +10,7 @@ export const PostTable = () => {
 
   const columns = [
     {
-      title: "Name",
+      title: "Nombre",
       dataIndex: "name",
       key: "name",
       filters: filter,
