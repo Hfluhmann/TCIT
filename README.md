@@ -9,7 +9,7 @@
 - Tener un usuario en PostgreSQL, ya sea el usuario default postgres o uno propio.
 - Crear una Base de Datos con nombre tcit.
 - - Para crear la base de datos, desde una terminal ejecutar los siguientes comandos:
-```psql -d postgres -U USUARIO```.
+```psql -d postgres -U USUARIO```, remplazando con tu usuario de postgreSQL.
 - - Ingresar contraseña del usuario.
 ```CREATE DATABASE tcit;```.
 - - usar el comando ```\q``` para salir.
