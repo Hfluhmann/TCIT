@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# TCIT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requerimientos
+- Node (Se ultilizó la versión 20.14.0).
+- PostgreSQL https://www.postgresql.org/download/
 
-## Available Scripts
+## Ejecución
+## Backend
+- Tener un usuario en PostgreSQL, ya sea el usuario default postgres o uno propio.
+- Crear una Base de Datos con nombre tcit.
+- - Para crear la base de datos, desde una terminal ejecutar los siguientes comandos:
+```psql -d postgres -U USUARIO```.
+- - Ingresar contraseña del usuario.
+```CREATE DATABASE tcit;```.
+- - usar el comando ```\q``` para salir.
 
-In the project directory, you can run:
+- En la carpeta /backend crear un archivo con llamado ```.env``` en el cual se debe ingresar el contenido que se encuentra en el archivo ```.env-ejemplo``` en el mismo directorio.
+- En el archivo ```.env``` remplazar ```postgres``` con tu usuario de postgres, en caso de no usar el usuario postgres para PostgreSQL. Remplazar ```pass``` con la contraseña de la cuenta con la estas conectado a la Base de Datos de postgreSQL.
 
-### `npm start`
+- Mediante una terminal, navegar a la carpeta /backend.
+- Instalar dependencias con el comando ```npm i``` o ```npm install```.
+- Iniciar servidor con el comando ```node index.js```.
+- El servidor deberia estar funcionando escuchando en el puerto 3001.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Frontend
+- Mediante una terminal, navegar a la carpeta /frontend.
+- Instalar dependencias con el comando ```npm i``` o ```npm install```.
+- Iniciar la aplicación con el comando ```npm start```.
+- En caso de no iniciarse una ventana en el navegador, ingresar a http://localhost:3000/.
