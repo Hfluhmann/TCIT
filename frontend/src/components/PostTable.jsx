@@ -1,36 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { useSelector } from "react-redux";
 import { Table } from "antd";
 
 
-export const PostTable = ({posts}) => {
+export const PostTable = () => {
 
-  const [filterItems, setFilterItems] = useState([])
-  
-  useEffect(() => {
-    const filterCandidates = []
-    posts.forEach((item) => {
-      const filteritem = {
-        text: item.name,
-        value: item.name
-      }
-      if (!filterCandidates.includes(filteritem)) {
-        filterCandidates.push(filteritem);
-      }
-    });
-    setFilterItems(filterCandidates);
-    return
-    
-  }, [posts])
-  
-
-
+  const allPosts = useSelector((state) => state.post.posts);
+  const filter = useSelector((state) => state.post.filter);  
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      filters: filterItems,
+      filters: filter,
       filterSearch: true,
       onFilter: (value, record) => record.name.startsWith(value),
     },
@@ -52,14 +35,15 @@ export const PostTable = ({posts}) => {
     const response = await axios.delete(
       `http://localhost:3001/posts/${postId}`
     );
-    console.log(response);
-    window.location.reload();
+    if (response.status === 200){
+      window.location.reload();
+    }
     return;
   };
 
   return (
     <Table
-      dataSource={posts}
+      dataSource={allPosts}
       columns={columns}
     />
   )

@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Posts from "./pages/Posts";
-import PostForm from './components/PostForm';
+import App from "./pages/App";
+import store from './app/store'
+import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Posts />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
