@@ -44,12 +44,16 @@ app.post('/posts', async (req, res) => {
 app.delete('/posts/:id', async (req, res) => {
   const itemId = req.params.id;
   try {
+    const record = await Post.findOne({
+       where: { id: itemId }
+     });
+
     const deletedItem = await Post.destroy({
       where: { id: itemId }
     });
 
     if (deletedItem) {
-      res.status(200).json({ message: 'Item deleted successfully' });
+      res.status(200).json({ post: record });
     } else {
       res.status(404).json({ message: 'Item not found' });
     }
