@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { Table } from "antd";
-
+import { removePost, loadFilters } from "../features/post/postSlice";
 
 export const PostTable = () => {
-
   const allPosts = useSelector((state) => state.post.posts);
-  const filter = useSelector((state) => state.post.filter);  
+  const filter = useSelector((state) => state.post.filter);
+  const dispatch = useDispatch();
+
   const columns = [
     {
       title: "Name",
@@ -35,17 +35,14 @@ export const PostTable = () => {
     const response = await axios.delete(
       `http://localhost:3001/posts/${postId}`
     );
-    if (response.status === 200){
-      window.location.reload();
+    if (response.status === 200) {
+      console.log(response.data.post)
+      dispatch(removePost(postId));
+      dispatch(loadFilters());
     }
     return;
   };
 
-  return (
-    <Table
-      dataSource={allPosts}
-      columns={columns}
-    />
-  )
-}
+  return <Table dataSource={allPosts} columns={columns} />;
+};
 export default PostTable;

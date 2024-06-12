@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { act } from 'react'
 
 export const postSlice = createSlice({
   name: 'post',
@@ -9,26 +8,22 @@ export const postSlice = createSlice({
   },
   reducers: {
     loadPosts: (state, action) => {
-      const allPosts = action.payload
-      const postsFilter = new Array();
-
-      (allPosts).forEach((item) => {
-        const name = item.name
-        const filteritem = {
-          text: name,
-          value: name
-        }
-        if (!postsFilter.includes(filteritem)) {
-          postsFilter.push(filteritem);
-        }
-      });
-      return {
-        posts: allPosts,
-        filter: postsFilter
-      }
+      state.posts = action.payload
     },
+    loadFilters: (state, _action) => {
+      const uniquePostNames = new Set(state.posts.map(post => post.name))
+      state.filter = Array.from(uniquePostNames).map(name => ({ text: name, value: name }))
+    },
+    pushPost: (state, action) => {
+      const post = action.payload
+      state.posts = [...state.posts, post]
+    },
+    removePost: (state, action) => {
+      const postId = action.payload
+      state.posts = state.posts.filter(post => post.id !== postId)
+    }
   },
 })
 
-export const { loadPosts } = postSlice.actions
+export const { loadPosts, loadFilters, pushPost, removePost } = postSlice.actions
 export default postSlice.reducer

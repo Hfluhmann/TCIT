@@ -1,8 +1,9 @@
 import React from "react";
 import { Button, Form, Input, Select, Space } from "antd";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { pushPost, loadFilters } from "../features/post/postSlice";
 
-const { Option } = Select;
 const layout = {
   labelCol: {
     span: 8,
@@ -20,15 +21,22 @@ const tailLayout = {
 
 const PostForm = () => {
   const [form] = Form.useForm();
-  
+  const dispatch = useDispatch();
+
   const onFinish = async (values) => {
     const response = await axios.post("http://localhost:3001/posts", values);
-    console.log(response);
-    window.location.reload();
+    console.log(response.data.post);
+    if (response.status === 201) {
+      const post = response.data.post;
+      dispatch(pushPost({ ...post, key: post.id }));
+      dispatch(loadFilters());
+    }
   };
+
   const onReset = () => {
     form.resetFields();
   };
+
   return (
     <Form
       {...layout}
@@ -74,4 +82,5 @@ const PostForm = () => {
     </Form>
   );
 };
+
 export default PostForm;
