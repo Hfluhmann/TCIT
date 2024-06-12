@@ -41,6 +41,24 @@ app.post('/posts', async (req, res) => {
   }
 });
 
+app.delete('/posts/:id', async (req, res) => {
+  const itemId = req.params.id;
+  try {
+    const deletedItem = await Post.destroy({
+      where: { id: itemId }
+    });
+
+    if (deletedItem) {
+      res.status(200).json({ message: 'Item deleted successfully' });
+    } else {
+      res.status(404).json({ message: 'Item not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred while deleting the item' });
+  }
+});
+
 sequelize
   .authenticate()
   .then(() => {
