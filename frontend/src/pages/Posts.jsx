@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import { Table } from "antd";
+import PostForm from '../components/PostForm';
+import PostTable from '../components/PostTable';
 
 const Posts = () => {
   const [posts, setPosts] = useState([])
@@ -13,34 +14,15 @@ const Posts = () => {
     getPosts()
   }, [])
 
-  const deleteEvent = (event) => {
-    console.log(event)
-    return
-  }
 
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Descripcion",
-      dataIndex: "description",
-      key: "description",
-    },
-    {
-      title: "",
-      key: "x",
-      render: (record) => <a onClick={() => deleteEvent(record.id)}>Delete</a>,
-    },
-  ];
 
   return (
-    <Table
-      dataSource={posts}
-      columns={columns}
-    />
+    <>
+      <PostForm/>
+      <PostTable
+        posts={posts}
+      />
+    </>
   );
 
 }
