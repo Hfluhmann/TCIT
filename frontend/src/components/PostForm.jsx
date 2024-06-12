@@ -27,6 +27,7 @@ const PostForm = () => {
     const response = await axios.post("http://localhost:3001/posts", values);
     console.log(response.data.post);
     if (response.status === 201) {
+      form.resetFields();
       const post = response.data.post;
       dispatch(pushPost({ ...post, key: post.id }));
       dispatch(loadFilters());
@@ -56,7 +57,7 @@ const PostForm = () => {
           },
         ]}
       >
-        <Input showCount maxLength={128} placeholder="input placeholder" />
+        <Input showCount maxLength={128}/>
       </Form.Item>
       <Form.Item
         label="Descripción"
@@ -67,7 +68,7 @@ const PostForm = () => {
           },
         ]}
       >
-        <Input showCount maxLength={255} placeholder="input placeholder" />
+        <Input showCount maxLength={255}/>
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Space>
